@@ -1,6 +1,6 @@
 /*--------------------------------------------------------*/
 /* ИМЯ: SHARIPOV RENAT, ID ПОЛЬЗОВАТЕЛЯ: 23К0210          */
-/* СРОК: 06/10/2025                                       */
+/* СРОК: 10/06/2025                                       */
 /* ИМЯ ФАЙЛА: prog1.c                                     */
 /* НАЗНАЧЕНИЕ ПРОГРАММЫ:                                  */
 /* Программа демонстрирует работу с процессами, созданиие */
@@ -24,7 +24,18 @@
 
 
 void signal_handler(int sig){
-    printf("Получен сигнал %d\n", sig);
+    printf("Got signal %d\n", sig);
+    switch(sig){
+        case SIGINT:
+            printf("\nGot SIGINT signal (Ctrl+C). Closing...\n");
+            exit(130);
+        case SIGTERM:
+            printf("\nGot SIGTERM signal. Closing...\n");
+            exit(143);
+        default:
+            printf("\nGot unknown signal: %d\n", sig);
+            exit(1);
+    }
 }
 
 /*--------------------------------------------------------*/
@@ -69,7 +80,7 @@ int main() {
     } 
     else {
         printf("Parent process: PID = %d, created child process with PID = %d\n", getpid(), pid);
-        printf("Wait child process close...\n");
+        printf("Waiting for child process close...\n");
         waitpid(pid, &status, 0);
         if (WIFEXITED(status)) {
             printf("Child process ended with exit code: %d\n", WEXITSTATUS(status));

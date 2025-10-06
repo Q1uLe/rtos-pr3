@@ -1,6 +1,6 @@
 /*--------------------------------------------------------*/
 /* ИМЯ: SHARIPOV RENAT, ID ПОЛЬЗОВАТЕЛЯ: 23К0210          */
-/* СРОК: 07/10/2025                                       */
+/* СРОК: 10/07/2025                                       */
 /* ИМЯ ФАЙЛА: process.c                                   */
 /* НАЗНАЧЕНИЕ ПРОГРАММЫ:                                  */
 /* Дочерняя программа, которая выполняет работу и         */
@@ -36,10 +36,10 @@ int main(int argc, char *argv[]){
     printf("I'm child process!\n");
     printf("My PID: %d\n", getpid());
     printf("My PPID: %d\n", getppid());
-    printf("Working for: %s", user_name);
+    printf("Working for: %s\n", user_name);
     
     for(int i=0; i<=10; i++){
-        printf("Working...step %d\n", i)
+        printf("Working...step %d\n", i);
         sleep(1);
     }
 
