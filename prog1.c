@@ -68,17 +68,17 @@ int main() {
 
     pid = fork();
 
-    if (pid == -1) {
+    if (pid == -1) { // если произошла ошибка, то...
         perror("Error while executing fork()");
         return 1;
     }
-    else if (pid == 0) {
+    else if (pid == 0) { // Если мы в дочернем процессе...
         printf("Child proccess: PID = %d, PPID = %d\n", getpid(), getppid());
         execl("./process", "process", user_input, NULL);
         perror("Error while executing execl()");
         exit(1);
     } 
-    else {
+    else { // Иначе(что значит - в родительском процессе), то...
         printf("Parent process: PID = %d, created child process with PID = %d\n", getpid(), pid);
         printf("Waiting for child process close...\n");
         waitpid(pid, &status, 0);
